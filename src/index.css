@@ -26,3 +26,9 @@ code {
 .card-group {
   margin: 110px 50px 50px;
 }
+
+footer {
+  background-color: #212529;
+  color: #ffffff;
+  padding: 10px;
+}
