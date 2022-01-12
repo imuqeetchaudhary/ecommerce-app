@@ -1,6 +1,6 @@
 import img from "./img/IMG_9356.jpg";
 
-export const productsArray = [
+export const products = [
   {
     id: 1,
     title: "Lofer # 1",

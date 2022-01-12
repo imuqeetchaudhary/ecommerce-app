@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { CardGroup } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
-import { productsArray } from "../Products";
+import { products } from "../Products";
 
 const ProductsListing = () => {
-  const [products, setProducts] = useState(productsArray);
+  // const [products, setProducts] = useState(productsArray);
 
   return (
     <div>
