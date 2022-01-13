@@ -2,11 +2,14 @@ import React from "react";
 import CarouselCard from "./CarouselCard";
 import ProductsListing from "./ProductsListing";
 
-const Home = () => {
+const Home = ({ products, handleCartChange }) => {
   return (
     <div>
       <CarouselCard />
-      <ProductsListing />
+      <ProductsListing
+        products={products}
+        handleCartChange={handleCartChange}
+      />
     </div>
   );
 };

@@ -8,12 +8,6 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import AllProducts from "./components/AllProducts";
 import { productsArray } from "./Products";
-import {
-  ProductsContext,
-  SetProductsContext,
-  CartProductsContext,
-  HandleCartProductsContext,
-} from "./components/Context";
 
 let cartProducts2 = [];
 
@@ -49,36 +43,24 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <ProductsContext.Provider value={products}>
-        <SetProductsContext.Provider value={setProducts}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <HandleCartProductsContext.Provider value={handleCartChange}>
-                  <Home />
-                </HandleCartProductsContext.Provider>
-              }
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home products={products} handleCartChange={handleCartChange} />
+          }
+        />
+        <Route
+          path="products"
+          element={
+            <AllProducts
+              products={products}
+              handleCartChange={handleCartChange}
             />
-            <Route
-              path="products"
-              element={
-                <HandleCartProductsContext.Provider value={handleCartChange}>
-                  <AllProducts />
-                </HandleCartProductsContext.Provider>
-              }
-            />
-            <Route
-              path="cart"
-              element={
-                <CartProductsContext.Provider value={cartProducts}>
-                  <Cart />
-                </CartProductsContext.Provider>
-              }
-            />
-          </Routes>
-        </SetProductsContext.Provider>
-      </ProductsContext.Provider>
+          }
+        />
+        <Route path="cart" element={<Cart cartProducts={cartProducts} />} />
+      </Routes>
       <Footer />
     </div>
   );

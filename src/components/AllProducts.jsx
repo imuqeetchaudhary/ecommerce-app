@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { CardGroup } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
-import { ProductsContext } from "./Context";
 
-const AllProducts = () => {
-  const products = useContext(ProductsContext);
+const AllProducts = ({ handleCartChange, products }) => {
   return (
     <div>
       <CardGroup className="card-group">
@@ -15,6 +13,8 @@ const AllProducts = () => {
             title={product.title}
             detail={product.detail}
             price={product.price}
+            handleCartChange={handleCartChange}
+            children={"Add to Cart"}
           />
         ))}
       </CardGroup>

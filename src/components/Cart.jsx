@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
-import { CartProductsContext } from "./Context";
+import React from "react";
 import { CardGroup } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
 
-const Cart = () => {
-  const cartProducts = useContext(CartProductsContext);
-
+const Cart = ({ cartProducts }) => {
   const totalCartProductsPrice = cartProducts.reduce(
     (accumulator, nextProduct) => {
       return nextProduct.no * nextProduct.price + accumulator;
@@ -26,6 +23,8 @@ const Cart = () => {
             detail={product.detail}
             price={product.price}
             no={product.no}
+            cartProducts={cartProducts}
+            children={"Remove From Cart"}
           />
         ))}
       </CardGroup>
