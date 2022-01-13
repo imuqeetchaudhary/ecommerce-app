@@ -1,35 +1,25 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import img from "../img/slide-img-1.jpg";
+import { carouselArray } from "../Carousel";
 import { CarouselImg, CarouselCaption } from "./CarouselItem";
-
-const text =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit ecommerce";
 
 const CarouselCard = () => {
   return (
     <div className="carousel">
       <Carousel>
-        <Carousel.Item>
-          <CarouselImg img={img} />
-          <Carousel.Caption>
-            <CarouselCaption caption={"First Slide"} text={text} />
-          </Carousel.Caption>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <CarouselImg img={img} />
-          <Carousel.Caption>
-            <CarouselCaption caption={"Second Slide"} text={text} />
-          </Carousel.Caption>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <CarouselImg img={img} />
-          <Carousel.Caption>
-            <CarouselCaption caption={"Third Slide"} text={text} />
-          </Carousel.Caption>
-        </Carousel.Item>
+        {carouselArray.map((carousal) => {
+          return (
+            <Carousel.Item>
+              <CarouselImg img={carousal.img} />
+              <Carousel.Caption>
+                <CarouselCaption
+                  title={carousal.title}
+                  detail={carousal.detail}
+                />
+              </Carousel.Caption>
+            </Carousel.Item>
+          );
+        })}
       </Carousel>
     </div>
   );

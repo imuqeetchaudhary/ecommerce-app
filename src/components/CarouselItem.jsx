@@ -8,11 +8,11 @@ const CarouselImg = ({ img }) => {
   );
 };
 
-const CarouselCaption = ({ caption, text }) => {
+const CarouselCaption = ({ title, detail }) => {
   return (
     <>
-      <h1>{caption}</h1>
-      <p>{text}</p>
+      <h1>{title}</h1>
+      <p>{detail}</p>
     </>
   );
 };
