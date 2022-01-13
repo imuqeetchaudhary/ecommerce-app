@@ -7,8 +7,8 @@ const Cart = () => {
   const cartProducts = useContext(CartProductsContext);
 
   const totalCartProductsPrice = cartProducts.reduce(
-    (accumulator, prevProduct) => {
-      return accumulator + prevProduct.price;
+    (accumulator, nextProduct) => {
+      return nextProduct.no * nextProduct.price + accumulator;
     },
     0
   );
