@@ -9,7 +9,7 @@ const CarouselCard = () => {
       <Carousel>
         {carouselArray.map((carousal) => {
           return (
-            <Carousel.Item>
+            <Carousel.Item key={carousal.id}>
               <CarouselImg img={carousal.img} />
               <Carousel.Caption>
                 <CarouselCaption

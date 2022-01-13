@@ -15,6 +15,7 @@ const ProductsListing = () => {
             img={product.img}
             title={product.title}
             detail={product.detail}
+            price={product.price}
           />
         ))}
       </CardGroup>

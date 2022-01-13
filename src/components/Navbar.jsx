@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const NavbarComp = () => {
   return (
@@ -8,9 +9,9 @@ const NavbarComp = () => {
         <Container fluid="md">
           <Navbar.Brand href="#home">A to Z Dressing 👕🩳🧣</Navbar.Brand>
           <Nav>
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/products">Products</Nav.Link>
-            <Nav.Link href="/cart">Cart</Nav.Link>
+            <Link to="/">Home</Link>
+            <Link to="/products">Products</Link>
+            <Link to="/cart">Cart</Link>
           </Nav>
         </Container>
       </Navbar>

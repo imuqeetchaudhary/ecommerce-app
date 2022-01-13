@@ -17,7 +17,7 @@ export const carouselArray = [
     detail,
   },
   {
-    id: 1,
+    id: 3,
     img,
     title: "Third Slide",
     detail,
