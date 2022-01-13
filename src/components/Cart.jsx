@@ -5,9 +5,18 @@ import SingleProductCard from "./SingleProductCard";
 
 const Cart = () => {
   const cartProducts = useContext(CartProductsContext);
+
+  const totalCartProductsPrice = cartProducts.reduce(
+    (accumulator, prevProduct) => {
+      return accumulator + prevProduct.price;
+    },
+    0
+  );
+
   return (
     <div className="cart">
       <h1>Cart</h1>
+      <h3>Total Cart Products Price: {totalCartProductsPrice}</h3>
       <CardGroup className="card-group">
         {cartProducts.map((product) => (
           <SingleProductCard

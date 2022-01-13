@@ -54,7 +54,7 @@ function App() {
               path="cart"
               element={
                 <CartProductsContext.Provider value={cartProducts}>
-                  <Cart/>
+                  <Cart />
                 </CartProductsContext.Provider>
               }
             />
