@@ -8,9 +8,9 @@ const NavbarComp = () => {
         <Container fluid="md">
           <Navbar.Brand href="#home">A to Z Dressing 👕🩳🧣</Navbar.Brand>
           <Nav>
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#products">Products</Nav.Link>
-            <Nav.Link href="#cart">Cart</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/products">Products</Nav.Link>
+            <Nav.Link href="/cart">Cart</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
