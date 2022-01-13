@@ -15,17 +15,35 @@ import {
   HandleCartProductsContext,
 } from "./components/Context";
 
+let cartProducts2 = [];
+
 function App() {
   const [products, setProducts] = useState(productsArray);
   const [cartProducts, setCartProducts] = useState([]);
 
   const handleCartChange = (e) => {
     e.preventDefault();
-    const selectedProductTitle = e.target.parentNode.firstChild.innerText
+    const selectedProductTitle = e.target.parentNode.firstChild.innerText;
     const selctedProduct = products.filter(
       (product) => product.title === selectedProductTitle
     );
-    setCartProducts([...cartProducts, ...selctedProduct]);
+
+    let isFound;
+    let foundIndex;
+
+    cartProducts2.length > 0
+      ? (foundIndex = cartProducts2.findIndex((product) => {
+          return product.id === selctedProduct[0].id
+            ? (isFound = true)
+            : (isFound = false);
+        }))
+      : (isFound = false);
+
+    isFound
+      ? (cartProducts2[foundIndex].no += 1)
+      : (cartProducts2 = [...cartProducts2, ...selctedProduct]);
+
+    setCartProducts(cartProducts2);
   };
 
   return (

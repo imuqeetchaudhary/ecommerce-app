@@ -9,6 +9,7 @@ export const productsArray = [
     detail,
     img,
     price: 1000,
+    no: 1,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const productsArray = [
     detail,
     img,
     price: 1000,
+    no: 1,
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ export const productsArray = [
     detail,
     img,
     price: 1000,
+    no: 1,
   },
   {
     id: 4,
@@ -30,5 +33,6 @@ export const productsArray = [
     detail,
     img,
     price: 1000,
+    no: 1,
   },
 ];

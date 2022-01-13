@@ -25,6 +25,7 @@ const Cart = () => {
             title={product.title}
             detail={product.detail}
             price={product.price}
+            no={product.no}
           />
         ))}
       </CardGroup>
