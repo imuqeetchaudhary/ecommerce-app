@@ -1,28 +1,30 @@
 import img from "./img/IMG_9356.jpg";
+const detail =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit ecommerce";
 
 export const products = [
   {
     id: 1,
     title: "Lofer # 1",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ecommerce",
-    img: img,
+    detail,
+    img,
   },
   {
     id: 2,
     title: "Lofer # 2",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ecommerce",
-    img: img,
+    detail,
+    img,
   },
   {
     id: 3,
     title: "Lofer # 3",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ecommerce",
-    img: img,
+    detail,
+    img,
   },
   {
     id: 4,
     title: "Lofer # 4",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ecommerce",
-    img: img,
+    detail,
+    img,
   },
 ];
