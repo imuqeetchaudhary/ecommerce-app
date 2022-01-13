@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CardGroup } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
-import { products } from "../Products";
+import { ProductsContext } from "./Context";
 
 const AllProducts = () => {
+  const products = useContext(ProductsContext);
   return (
     <div>
       <CardGroup className="card-group">

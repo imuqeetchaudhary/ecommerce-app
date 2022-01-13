@@ -8,7 +8,7 @@ const SingleProductCard = ({ img, title, detail }) => {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{detail}</Card.Text>
-        <Button variant="primary">Open</Button>
+        <Button variant="primary">Add to Cart</Button>
       </Card.Body>
     </Card>
   );

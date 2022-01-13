@@ -2,7 +2,7 @@ import img from "./img/IMG_9356.jpg";
 const detail =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit ecommerce";
 
-export const products = [
+export const productsArray = [
   {
     id: 1,
     title: "Lofer # 1",

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CardGroup } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
-import { products } from "../Products";
+import { ProductsContext } from "./Context";
 
 const ProductsListing = () => {
-  // const [products, setProducts] = useState(productsArray);
+  const products = useContext(ProductsContext);
 
   return (
     <div>
