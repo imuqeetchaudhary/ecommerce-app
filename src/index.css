@@ -40,6 +40,10 @@ code {
   max-width: 25%;
 }
 
+input {
+  width: 100px;
+}
+
 footer {
   background-color: #212529;
   color: #ffffff;

@@ -73,6 +73,7 @@ function App() {
           element={
             <Cart
               cartProducts={cartProducts}
+              setCartProducts={setCartProducts}
               handleDeleteCartChange={handleDeleteCartChange}
             />
           }

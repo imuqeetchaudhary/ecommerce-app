@@ -9,6 +9,8 @@ const SingleProductCard = ({
   no,
   children,
   handleCartChange,
+  handleIncrementCartProductQuantityChange,
+  handleDecrementCartProductQuantityChange,
 }) => {
   return (
     <div className="single-card">
@@ -18,9 +20,17 @@ const SingleProductCard = ({
           <Card.Title>{title}</Card.Title>
           <Card.Text>{detail}</Card.Text>
           <Card.Text>$ {price}</Card.Text>
-          <Card.Text>
-            {children.quantity} {no}
-          </Card.Text>
+          {children.cart && (
+            <Card.Text>
+              <button onClick={handleDecrementCartProductQuantityChange}>
+                -
+              </button>
+              {`${children.quantity} ${no}`}
+              <button onClick={handleIncrementCartProductQuantityChange}>
+                +
+              </button>
+            </Card.Text>
+          )}
           <Button variant="primary" type="submit" onClick={handleCartChange}>
             {children.button}
           </Button>
