@@ -40,6 +40,18 @@ code {
   max-width: 25%;
 }
 
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 1.1em;
+}
+
+.nav-links a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
 input {
   width: 100px;
 }
