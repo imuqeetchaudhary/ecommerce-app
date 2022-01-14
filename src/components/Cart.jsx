@@ -26,7 +26,7 @@ const Cart = ({ cartProducts, handleDeleteCartChange }) => {
                 no={product.no}
                 cartProducts={cartProducts}
                 handleCartChange={handleDeleteCartChange}
-                children={"Remove From Cart"}
+                children={{ button: "Remove From Cart", quantity: "quantity" }}
               />
             ))}
           </CardGroup>

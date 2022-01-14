@@ -18,9 +18,11 @@ const SingleProductCard = ({
           <Card.Title>{title}</Card.Title>
           <Card.Text>{detail}</Card.Text>
           <Card.Text>$ {price}</Card.Text>
-          <Card.Text>quantity {no}</Card.Text>
+          <Card.Text>
+            {children.quantity} {no}
+          </Card.Text>
           <Button variant="primary" type="submit" onClick={handleCartChange}>
-            {children}
+            {children.button}
           </Button>
         </Card.Body>
       </Card>
