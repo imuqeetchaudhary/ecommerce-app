@@ -59,7 +59,10 @@ const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
 
   return (
     <div className="cart">
-      <h1>Cart Products</h1>
+      {/* <h1>Cart Products</h1> */}
+      <h4 className="total-cart-price">
+        Total Cart Products Price: {totalCartProductsPrice}
+      </h4>
       <Row xs={20} md={20} className="cart-row g-4">
         <Col>
           <CardGroup className="card-group">
@@ -90,7 +93,6 @@ const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
           </CardGroup>
         </Col>
       </Row>
-      <h3>Total Cart Products Price: {totalCartProductsPrice}</h3>
     </div>
   );
 };

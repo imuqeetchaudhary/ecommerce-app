@@ -52,12 +52,27 @@ code {
   text-decoration: underline;
 }
 
+.total-cart-price {
+  position: fixed;
+  width: 100%;
+  top: 60px;
+  z-index: 1;
+  background-color: #212529;
+  color: #ffffff;
+  display: block;
+  padding: 0 0 10px;
+}
+
 input {
   width: 100px;
 }
 
 footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: block;
   background-color: #212529;
   color: #ffffff;
-  padding: 10px;
+  padding: 5px;
 }
