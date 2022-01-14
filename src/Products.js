@@ -1,7 +1,12 @@
-import img1 from "./img/IMG_9351.jpg";
-import img2 from "./img/IMG_9352.jpg";
-import img3 from "./img/IMG_9353.jpg";
-import img4 from "./img/IMG_9354.jpg";
+import img1 from "./img/IMG_9341.jpg";
+import img2 from "./img/IMG_9342.jpg";
+import img3 from "./img/IMG_9343.jpg";
+import img4 from "./img/IMG_9344.jpg";
+
+import img5 from "./img/IMG_9351.jpg";
+import img6 from "./img/IMG_9352.jpg";
+import img7 from "./img/IMG_9353.jpg";
+import img8 from "./img/IMG_9354.jpg";
 
 const detail =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit ecommerce";
@@ -43,7 +48,7 @@ export const productsArray = [
     id: 5,
     title: "Lofer # 5",
     detail,
-    img: img4,
+    img: img5,
     price: 1000,
     no: 1,
   },
@@ -51,7 +56,7 @@ export const productsArray = [
     id: 6,
     title: "Lofer # 6",
     detail,
-    img: img3,
+    img: img6,
     price: 1000,
     no: 1,
   },
@@ -59,7 +64,7 @@ export const productsArray = [
     id: 7,
     title: "Lofer # 7",
     detail,
-    img: img2,
+    img: img7,
     price: 1000,
     no: 1,
   },
@@ -67,7 +72,7 @@ export const productsArray = [
     id: 8,
     title: "Lofer # 8",
     detail,
-    img: img3,
+    img: img8,
     price: 1000,
     no: 1,
   },
