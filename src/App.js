@@ -2,12 +2,14 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import AllProducts from "./components/AllProducts";
 import { productsArray } from "./Products";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 let cartProducts2 = [];
 
@@ -22,6 +24,8 @@ function App() {
       (product) => product.title !== selectedProductTitle
     );
     setCartProducts(selctedProduct);
+
+    toast(`Removed ${selectedProductTitle} from the cart`);
   };
 
   const handleCartChange = (e) => {
@@ -47,11 +51,14 @@ function App() {
       : (cartProducts2 = [...cartProducts2, ...selctedProduct]);
 
     setCartProducts(cartProducts2);
+
+    toast(`Added ${selectedProductTitle} into the cart`);
   };
 
   return (
     <div className="App">
       <Navbar />
+      <ToastContainer position="top-right" theme="light"  />
       <Routes>
         <Route
           path="/"
@@ -79,7 +86,6 @@ function App() {
           }
         />
       </Routes>
-      <Footer />
     </div>
   );
 }

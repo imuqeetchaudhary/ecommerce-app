@@ -1,6 +1,8 @@
 import React from "react";
 import { CardGroup, Col, Row } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
   const totalCartProductsPrice = cartProducts.reduce(
@@ -30,6 +32,8 @@ const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
           : product
       )
     );
+
+    toast(`Incremented ${selectedProductTitle}'s quantity in the cart`);
   };
 
   const handleDecrementCartProductQuantityChange = (e) => {
@@ -55,6 +59,8 @@ const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
               : product
           )
         );
+
+    toast(`Decremented ${selectedProductTitle}'s quantity in the cart`);
   };
 
   return (

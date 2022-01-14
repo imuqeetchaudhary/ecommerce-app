@@ -1,6 +1,7 @@
 import React from "react";
 import { CardGroup } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
+import Footer from "./Footer";
 
 const AllProducts = ({ handleCartChange, products }) => {
   return (
@@ -18,6 +19,7 @@ const AllProducts = ({ handleCartChange, products }) => {
           />
         ))}
       </CardGroup>
+            <Footer />
     </div>
   );
 };
