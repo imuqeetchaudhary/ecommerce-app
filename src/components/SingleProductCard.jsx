@@ -22,13 +22,19 @@ const SingleProductCard = ({
           <Card.Text>$ {price}</Card.Text>
           {children.cart && (
             <Card.Text>
-              <button onClick={handleDecrementCartProductQuantityChange}>
+              <Button
+                variant="outline-danger"
+                onClick={handleDecrementCartProductQuantityChange}
+              >
                 -
-              </button>
-              {`${children.quantity} ${no}`}
-              <button onClick={handleIncrementCartProductQuantityChange}>
+              </Button>
+              {`         ${children.quantity} ${no}         `}
+              <Button
+                variant="outline-success"
+                onClick={handleIncrementCartProductQuantityChange}
+              >
                 +
-              </button>
+              </Button>
             </Card.Text>
           )}
           <Button variant="primary" type="submit" onClick={handleCartChange}>
