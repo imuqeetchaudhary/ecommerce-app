@@ -7,7 +7,7 @@ const NavbarComp = () => {
     <>
       <Navbar fixed="top" bg="dark" variant="dark">
         <Container fluid="md">
-          <Navbar.Brand href="#home">A to Z Dressing 👕🩳🧣</Navbar.Brand>
+          <Navbar.Brand href="/">A to Z Dressing 👕🩳🧣</Navbar.Brand>
           <Nav className="nav-links" >
             <Link to="/">Home</Link>
             <Link to="/products">Products</Link>
