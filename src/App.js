@@ -12,8 +12,17 @@ import { productsArray } from "./Products";
 let cartProducts2 = [];
 
 function App() {
-  const [products, setProducts] = useState(productsArray);
+  const [products] = useState(productsArray);
   const [cartProducts, setCartProducts] = useState([]);
+
+  const handleDeleteCartChange = (e) => {
+    e.preventDefault();
+    const selectedProductTitle = e.target.parentNode.firstChild.innerText;
+    const selctedProduct = cartProducts.filter(
+      (product) => product.title !== selectedProductTitle
+    );
+    setCartProducts(selctedProduct);
+  };
 
   const handleCartChange = (e) => {
     e.preventDefault();
@@ -59,7 +68,15 @@ function App() {
             />
           }
         />
-        <Route path="cart" element={<Cart cartProducts={cartProducts} />} />
+        <Route
+          path="cart"
+          element={
+            <Cart
+              cartProducts={cartProducts}
+              handleDeleteCartChange={handleDeleteCartChange}
+            />
+          }
+        />
       </Routes>
       <Footer />
     </div>

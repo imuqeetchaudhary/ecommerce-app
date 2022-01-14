@@ -2,7 +2,7 @@ import React from "react";
 import { CardGroup } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
 
-const Cart = ({ cartProducts }) => {
+const Cart = ({ cartProducts, handleDeleteCartChange }) => {
   const totalCartProductsPrice = cartProducts.reduce(
     (accumulator, nextProduct) => {
       return nextProduct.no * nextProduct.price + accumulator;
@@ -24,6 +24,7 @@ const Cart = ({ cartProducts }) => {
             price={product.price}
             no={product.no}
             cartProducts={cartProducts}
+            handleCartChange={handleDeleteCartChange}
             children={"Remove From Cart"}
           />
         ))}
