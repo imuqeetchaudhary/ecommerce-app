@@ -11,18 +11,20 @@ const SingleProductCard = ({
   handleCartChange,
 }) => {
   return (
-    <Card border="primary" className="single-card">
-      <Card.Img src={img} />
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{detail}</Card.Text>
-        <Card.Text>$ {price}</Card.Text>
-        <Card.Text>quantity {no}</Card.Text>
-        <Button variant="primary" type="submit" onClick={handleCartChange}>
-          {children}
-        </Button>
-      </Card.Body>
-    </Card>
+    <div className="single-card">
+      <Card border="primary">
+        <Card.Img src={img} />
+        <Card.Body>
+          <Card.Title>{title}</Card.Title>
+          <Card.Text>{detail}</Card.Text>
+          <Card.Text>$ {price}</Card.Text>
+          <Card.Text>quantity {no}</Card.Text>
+          <Button variant="primary" type="submit" onClick={handleCartChange}>
+            {children}
+          </Button>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 

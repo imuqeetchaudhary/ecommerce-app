@@ -35,4 +35,20 @@ export const productsArray = [
     price: 1000,
     no: 1,
   },
+  {
+    id: 5,
+    title: "Lofer # 5",
+    detail,
+    img,
+    price: 1000,
+    no: 1,
+  },
+  {
+    id: 6,
+    title: "Lofer # 6",
+    detail,
+    img,
+    price: 1000,
+    no: 1,
+  },
 ];

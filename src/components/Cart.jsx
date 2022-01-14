@@ -1,5 +1,5 @@
 import React from "react";
-import { CardGroup } from "react-bootstrap";
+import { CardGroup, Col, Row } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
 
 const Cart = ({ cartProducts, handleDeleteCartChange }) => {
@@ -12,23 +12,27 @@ const Cart = ({ cartProducts, handleDeleteCartChange }) => {
 
   return (
     <div className="cart">
-      <h1>Cart</h1>
+      <h1>Cart Products</h1>
+      <Row xs={20} md={20} className="cart-row g-4">
+        <Col>
+          <CardGroup className="card-group">
+            {cartProducts.map((product) => (
+              <SingleProductCard
+                key={product.id}
+                img={product.img}
+                title={product.title}
+                detail={product.detail}
+                price={product.price}
+                no={product.no}
+                cartProducts={cartProducts}
+                handleCartChange={handleDeleteCartChange}
+                children={"Remove From Cart"}
+              />
+            ))}
+          </CardGroup>
+        </Col>
+      </Row>
       <h3>Total Cart Products Price: {totalCartProductsPrice}</h3>
-      <CardGroup className="card-group">
-        {cartProducts.map((product) => (
-          <SingleProductCard
-            key={product.id}
-            img={product.img}
-            title={product.title}
-            detail={product.detail}
-            price={product.price}
-            no={product.no}
-            cartProducts={cartProducts}
-            handleCartChange={handleDeleteCartChange}
-            children={"Remove From Cart"}
-          />
-        ))}
-      </CardGroup>
     </div>
   );
 };
