@@ -58,7 +58,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <ToastContainer position="top-right" theme="light"  />
+      <ToastContainer position="top-right" theme="light" />
       <Routes>
         <Route
           path="/"
