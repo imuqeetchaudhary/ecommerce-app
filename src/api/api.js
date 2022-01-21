@@ -17,3 +17,7 @@ export const register = (data) => {
 export const login = (data) => {
   return api.post("/user/login", { ...data });
 };
+
+export const getAllProducts = () => {
+  return api.get("/product");
+};

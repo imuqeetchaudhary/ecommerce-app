@@ -8,10 +8,10 @@ const ProductsListing = ({ products, handleCartChange }) => {
       <CardGroup className="card-group">
         {products.map((product) => (
           <SingleProductCard
-            key={product.id}
-            img={product.img}
+            key={product._id}
+            img={product.image}
             title={product.title}
-            detail={product.detail}
+            detail={product.description}
             price={product.price}
             handleCartChange={handleCartChange}
             children={{ button: "Add to Cart" }}

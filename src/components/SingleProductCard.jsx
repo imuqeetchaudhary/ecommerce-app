@@ -15,7 +15,7 @@ const SingleProductCard = ({
   return (
     <div className="single-card">
       <Card border="primary">
-        <Card.Img src={img} />
+        <Card.Img src={`http://localhost:8000/${img}`} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Text>{detail}</Card.Text>

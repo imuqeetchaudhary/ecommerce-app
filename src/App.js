@@ -1,6 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
 import { Route, Routes } from "react-router-dom";
@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import AllProducts from "./components/AllProducts";
-import { productsArray } from "./Products";
+import { getAllProducts } from "./api/api";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,8 +16,9 @@ import "react-toastify/dist/ReactToastify.css";
 let cartProducts2 = [];
 
 function App() {
-  const [products] = useState(productsArray);
+  const [products, setProducts] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
+  const [isFetched, setIsFetched] = useState(false);
 
   const handleDeleteCartChange = (e) => {
     e.preventDefault();
@@ -56,6 +57,21 @@ function App() {
 
     toast(`Added ${selectedProductTitle} into the cart`);
   };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        if (!isFetched) {
+          const res = await getAllProducts();
+          setProducts(res.data.products);
+          setIsFetched(true);
+        }
+      } catch (err) {
+        console.log(err.response);
+      }
+    };
+    fetchProducts();
+  }, [isFetched]);
 
   return (
     <div className="App">
