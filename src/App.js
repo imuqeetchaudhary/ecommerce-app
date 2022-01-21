@@ -8,13 +8,19 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import AllProducts from "./components/AllProducts";
-import { getAllProducts, getCartItems, deleteCartItem } from "./api/api";
+import {
+  getAllProducts,
+  addCartItem,
+  getCartItems,
+  deleteCartItem,
+  updateCartItem,
+} from "./api/api";
 import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-let cartProducts2 = [];
+// let cartProducts2 = [];
 
 function App() {
   const navigate = useNavigate();
@@ -39,9 +45,42 @@ function App() {
     }
   };
 
-  const handleCartChange = (e, id) => {
+  const handleCartChange = async (e, id) => {
     e.preventDefault();
-    console.log(id);
+
+    const foundIndex = cartProducts.findIndex(
+      (cart) => cart.productId._id === id
+    );
+
+    if (foundIndex < 0) {
+      try {
+        await addCartItem(id);
+        toast(`Added product into the cart`);
+
+        const cartRes = await getCartItems();
+        setCartProducts(cartRes.data.cart);
+      } catch (err) {
+        throw new Error(err);
+      }
+    } else {
+      cartProducts[foundIndex].quantity += 1;
+
+      const updatedCartObj = {
+        productId: cartProducts[foundIndex].productId._id,
+        quantity: cartProducts[foundIndex].quantity,
+      };
+
+      const cartId = cartProducts[foundIndex]._id;
+
+      try {
+        await updateCartItem(cartId, updatedCartObj);
+        toast(
+          `Incremented ${cartProducts[foundIndex].productId.title}'s quantity in the cart`
+        );
+      } catch (err) {
+        throw new Error(err);
+      }
+    }
 
     // const selectedProductTitle = e.target.parentNode.firstChild.innerText;
     // const selctedProduct = products.filter(
@@ -77,7 +116,7 @@ function App() {
           setIsFetchedAllProducts(true);
         }
       } catch (err) {
-        console.log(err.response);
+        throw new Error(err);
       }
     };
 
@@ -86,11 +125,10 @@ function App() {
         if (!isFetchedCartItems) {
           const res = await getCartItems();
           setCartProducts(res.data.cart);
-          // console.log(res.data.cart);
           setIsFetchedCartItems(true);
         }
       } catch (err) {
-        console.log(err.response);
+        throw new Error(err);
       }
     };
 
