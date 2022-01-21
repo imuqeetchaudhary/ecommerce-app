@@ -75,7 +75,7 @@ const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
             {cartProducts.map((product) => (
               <SingleProductCard
                 key={product.id}
-                img={product.img}
+                img={product.image}
                 title={product.title}
                 detail={product.detail}
                 price={product.price}
