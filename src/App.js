@@ -20,8 +20,6 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// let cartProducts2 = [];
-
 function App() {
   const navigate = useNavigate();
 
@@ -81,30 +79,6 @@ function App() {
         throw new Error(err);
       }
     }
-
-    // const selectedProductTitle = e.target.parentNode.firstChild.innerText;
-    // const selctedProduct = products.filter(
-    //   (product) => product.title === selectedProductTitle
-    // );
-
-    // let isFound;
-    // let foundIndex;
-
-    // cartProducts2.length > 0
-    //   ? (foundIndex = cartProducts2.findIndex((product) => {
-    //       return product.id === selctedProduct[0].id
-    //         ? (isFound = true)
-    //         : (isFound = false);
-    //     }))
-    //   : (isFound = false);
-
-    // isFound
-    //   ? (cartProducts2[foundIndex].no += 1)
-    //   : (cartProducts2 = [...cartProducts2, ...selctedProduct]);
-
-    // setCartProducts(cartProducts2);
-
-    // toast(`Added ${selectedProductTitle} into the cart`);
   };
 
   useEffect(() => {
