@@ -59,10 +59,9 @@ const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
     if (updatedCartObj.quantity < 1) {
       try {
         await deleteCartItem(cartId);
-        navigate("/cart");
         updatedCartProducts.splice(foundIndex, 1);
+        navigate("/cart");
         toast(`Removed ${productTitle} from the cart`);
-        setTimeout(() => window.location.reload(), 1000);
       } catch (err) {
         throw new Error(err);
       }

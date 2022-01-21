@@ -9,6 +9,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import AllProducts from "./components/AllProducts";
 import { getAllProducts, getCartItems, deleteCartItem } from "./api/api";
+import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,6 +17,8 @@ import "react-toastify/dist/ReactToastify.css";
 let cartProducts2 = [];
 
 function App() {
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [isFetchedAllProducts, setIsFetchedAllProducts] = useState(false);
@@ -24,10 +27,13 @@ function App() {
   const handleDeleteCartChange = async (e, productId, cartId) => {
     e.preventDefault();
 
+    const foundIndex = cartProducts.findIndex((cart) => cart._id === cartId);
+
     try {
       await deleteCartItem(cartId);
+      cartProducts.splice(foundIndex, 1);
       toast(`Removed from the cart`);
-      setTimeout(() => window.location.reload(), 1000);
+      navigate("/cart");
     } catch (err) {
       throw new Error(err);
     }
