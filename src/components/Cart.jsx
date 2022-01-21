@@ -3,64 +3,80 @@ import { CardGroup, Col, Row } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { updateCartItem, deleteCartItem } from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
+  const navigate = useNavigate();
+
   const totalCartProductsPrice = cartProducts.reduce(
     (accumulator, nextProduct) => {
-      return nextProduct.no * nextProduct.price + accumulator;
+      return nextProduct.quantity * nextProduct.productId.price + accumulator;
     },
     0
   );
 
   let updatedCartProducts = cartProducts;
-  const handleIncrementCartProductQuantityChange = (e) => {
+  const handleIncrementCartProductQuantityChange = async (e, cartId) => {
     e.preventDefault();
-
-    const selectedProductTitle =
-      e.target.parentNode.parentNode.firstChild.innerText;
-
     const foundIndex = updatedCartProducts.findIndex(
-      (product) => product.title === selectedProductTitle
+      (cart) => cart._id === cartId
     );
 
-    updatedCartProducts[foundIndex].no += 1;
+    updatedCartProducts[foundIndex].quantity += 1;
+    const updatedCartObj = {
+      productId: updatedCartProducts[foundIndex].productId._id,
+      quantity: updatedCartProducts[foundIndex].quantity,
+    };
 
-    setCartProducts(
-      updatedCartProducts.filter((product) =>
-        product.title === selectedProductTitle
-          ? (product.no = updatedCartProducts[foundIndex].no)
-          : product
-      )
-    );
-
-    toast(`Incremented ${selectedProductTitle}'s quantity in the cart`);
+    try {
+      await updateCartItem(cartId, updatedCartObj);
+      navigate("/cart");
+      toast(
+        `Incremented ${updatedCartProducts[foundIndex].productId.title}'s quantity in the cart`
+      );
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 
-  const handleDecrementCartProductQuantityChange = (e) => {
+  const handleDecrementCartProductQuantityChange = async (e, cartId) => {
     e.preventDefault();
-    const selectedProductTitle =
-      e.target.parentNode.parentNode.firstChild.innerText;
-    const selctedProduct = cartProducts.filter(
-      (product) => product.title === selectedProductTitle
+
+    const foundIndex = updatedCartProducts.findIndex(
+      (cart) => cart._id === cartId
     );
 
-    selctedProduct[0].no -= 1;
+    updatedCartProducts[foundIndex].quantity -= 1;
 
-    selctedProduct[0].no < 1
-      ? setCartProducts(
-          cartProducts.filter(
-            (product) => product.title !== selectedProductTitle
-          )
-        )
-      : setCartProducts(
-          cartProducts.filter((product) =>
-            product.title === selectedProductTitle
-              ? (product.no = selctedProduct[0].no)
-              : product
-          )
+    const productTitle = updatedCartProducts[foundIndex].productId.title;
+
+    const updatedCartObj = {
+      productId: updatedCartProducts[foundIndex].productId._id,
+      quantity: updatedCartProducts[foundIndex].quantity,
+    };
+
+    if (updatedCartObj.quantity < 1) {
+      try {
+        await deleteCartItem(cartId);
+        navigate("/cart");
+        updatedCartProducts.splice(foundIndex, 1);
+        toast(`Removed ${productTitle} from the cart`);
+        setTimeout(() => window.location.reload(), 1000);
+      } catch (err) {
+        throw new Error(err);
+      }
+    } else {
+      try {
+        await updateCartItem(cartId, updatedCartObj);
+        navigate("/cart");
+        toast(
+          `Decremented ${updatedCartProducts[foundIndex].productId.title}'s quantity in the cart`
         );
-
-    toast(`Decremented ${selectedProductTitle}'s quantity in the cart`);
+      } catch (err) {
+        throw new Error(err);
+      }
+    }
   };
 
   return (
@@ -72,30 +88,34 @@ const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
       <Row xs={20} md={20} className="cart-row g-4">
         <Col>
           <CardGroup className="card-group">
-            {cartProducts.map((product) => (
-              <SingleProductCard
-                key={product.id}
-                img={product.image}
-                title={product.title}
-                detail={product.detail}
-                price={product.price}
-                no={product.no}
-                cartProducts={cartProducts}
-                setCartProducts={setCartProducts}
-                handleCartChange={handleDeleteCartChange}
-                children={{
-                  button: "Remove From Cart",
-                  quantity: "quantity",
-                  cart: true,
-                }}
-                handleIncrementCartProductQuantityChange={
-                  handleIncrementCartProductQuantityChange
-                }
-                handleDecrementCartProductQuantityChange={
-                  handleDecrementCartProductQuantityChange
-                }
-              />
-            ))}
+            {cartProducts.map((product) => {
+              return (
+                <SingleProductCard
+                  key={product.productId._id}
+                  productId={product.productId._id}
+                  cartId={product._id}
+                  img={product.productId.image}
+                  title={product.productId.title}
+                  detail={product.productId.description}
+                  price={product.productId.price}
+                  no={product.quantity}
+                  cartProducts={cartProducts}
+                  setCartProducts={setCartProducts}
+                  handleCartChange={handleDeleteCartChange}
+                  children={{
+                    button: "Remove From Cart",
+                    quantity: "quantity",
+                    cart: true,
+                  }}
+                  handleIncrementCartProductQuantityChange={
+                    handleIncrementCartProductQuantityChange
+                  }
+                  handleDecrementCartProductQuantityChange={
+                    handleDecrementCartProductQuantityChange
+                  }
+                />
+              );
+            })}
           </CardGroup>
         </Col>
       </Row>

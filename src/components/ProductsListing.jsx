@@ -9,6 +9,7 @@ const ProductsListing = ({ products, handleCartChange }) => {
         {products.map((product) => (
           <SingleProductCard
             key={product._id}
+            id={product._id}
             img={product.image}
             title={product.title}
             detail={product.description}

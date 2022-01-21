@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import AllProducts from "./components/AllProducts";
-import { getAllProducts } from "./api/api";
+import { getAllProducts, getCartItems } from "./api/api";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,22 +18,28 @@ let cartProducts2 = [];
 function App() {
   const [products, setProducts] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
-  const [isFetched, setIsFetched] = useState(false);
+  const [isFetchedAllProducts, setIsFetchedAllProducts] = useState(false);
+  const [isFetchedCartItems, setIsFetchedCartItems] = useState(false);
 
-  const handleDeleteCartChange = (e) => {
-    e.preventDefault();
-    const selectedProductTitle = e.target.parentNode.firstChild.innerText;
-    const selctedProduct = cartProducts.filter(
-      (product) => product.title !== selectedProductTitle
-    );
-    setCartProducts(selctedProduct);
+  const handleDeleteCartChange = (cartId) => {
+    // e.preventDefault();
+    console.log("Deleted Cart Id", cartId);
+    console.log(cartProducts);
+    setCartProducts(cartProducts);
 
-    toast(`Removed ${selectedProductTitle} from the cart`);
+    // const selectedProductTitle = e.target.parentNode.firstChild.innerText;
+    // const selctedProduct = cartProducts.filter(
+    //   (product) => product.title !== selectedProductTitle
+    // );
+    // setCartProducts(selctedProduct);
+    // toast(`Removed ${selectedProductTitle} from the cart`);
   };
 
-  const handleCartChange = (e) => {
+  const handleCartChange = (e, id) => {
     e.preventDefault();
+
     const selectedProductTitle = e.target.parentNode.firstChild.innerText;
+    console.log(id);
     const selctedProduct = products.filter(
       (product) => product.title === selectedProductTitle
     );
@@ -61,17 +67,32 @@ function App() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        if (!isFetched) {
+        if (!isFetchedAllProducts) {
           const res = await getAllProducts();
           setProducts(res.data.products);
-          setIsFetched(true);
+          setIsFetchedAllProducts(true);
         }
       } catch (err) {
         console.log(err.response);
       }
     };
+
+    const fetchCartItems = async () => {
+      try {
+        if (!isFetchedCartItems) {
+          const res = await getCartItems();
+          setCartProducts(res.data.cart);
+          // console.log(res.data.cart);
+          setIsFetchedCartItems(true);
+        }
+      } catch (err) {
+        console.log(err.response);
+      }
+    };
+
     fetchProducts();
-  }, [isFetched]);
+    fetchCartItems();
+  }, [isFetchedAllProducts, isFetchedCartItems]);
 
   return (
     <div className="App">
