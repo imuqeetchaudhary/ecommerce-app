@@ -8,7 +8,9 @@ const NavbarComp = () => {
       <Navbar fixed="top" bg="dark" variant="dark">
         <Container fluid="md">
           <Navbar.Brand href="/">A to Z Dressing 👕🩳🧣</Navbar.Brand>
-          <Nav className="nav-links" >
+          <Nav className="nav-links">
+            <Link to="/register">Register</Link>
+            <Link to="/login">Login</Link>
             <Link to="/">Home</Link>
             <Link to="/products">Products</Link>
             <Link to="/cart">Cart</Link>

@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
+import Register from "./components/Register";
+import Login from "./components/Login";
 import AllProducts from "./components/AllProducts";
 import { productsArray } from "./Products";
 
@@ -66,6 +68,8 @@ function App() {
             <Home products={products} handleCartChange={handleCartChange} />
           }
         />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="products"
           element={
