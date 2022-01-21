@@ -91,8 +91,6 @@ const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
               return (
                 <SingleProductCard
                   key={product.productId._id}
-                  productId={product.productId._id}
-                  cartId={product._id}
                   img={product.productId.image}
                   title={product.productId.title}
                   detail={product.productId.description}
@@ -105,6 +103,7 @@ const Cart = ({ cartProducts, setCartProducts, handleDeleteCartChange }) => {
                     button: "Remove From Cart",
                     quantity: "quantity",
                     cart: true,
+                    id: product._id,
                   }}
                   handleIncrementCartProductQuantityChange={
                     handleIncrementCartProductQuantityChange

@@ -8,7 +8,6 @@ const AllProducts = ({ handleCartChange, products }) => {
     <div>
       <CardGroup className="card-group">
         {products.map((product) => {
-          console.log(product._id);
           return (
             <SingleProductCard
               key={product._id}
@@ -17,7 +16,7 @@ const AllProducts = ({ handleCartChange, products }) => {
               detail={product.description}
               price={product.price}
               handleCartChange={handleCartChange}
-              children={{ button: "Add to Cart" }}
+              children={{ button: "Add to Cart", id: product._id }}
             />
           );
         })}

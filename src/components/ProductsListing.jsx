@@ -15,7 +15,7 @@ const ProductsListing = ({ products, handleCartChange }) => {
             detail={product.description}
             price={product.price}
             handleCartChange={handleCartChange}
-            children={{ button: "Add to Cart" }}
+            children={{ button: "Add to Cart", id: product._id }}
           />
         ))}
       </CardGroup>

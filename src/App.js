@@ -24,7 +24,7 @@ function App() {
   const [isFetchedAllProducts, setIsFetchedAllProducts] = useState(false);
   const [isFetchedCartItems, setIsFetchedCartItems] = useState(false);
 
-  const handleDeleteCartChange = async (e, productId, cartId) => {
+  const handleDeleteCartChange = async (e, cartId) => {
     e.preventDefault();
 
     const foundIndex = cartProducts.findIndex((cart) => cart._id === cartId);
@@ -41,31 +41,31 @@ function App() {
 
   const handleCartChange = (e, id) => {
     e.preventDefault();
-
-    const selectedProductTitle = e.target.parentNode.firstChild.innerText;
     console.log(id);
-    const selctedProduct = products.filter(
-      (product) => product.title === selectedProductTitle
-    );
 
-    let isFound;
-    let foundIndex;
+    // const selectedProductTitle = e.target.parentNode.firstChild.innerText;
+    // const selctedProduct = products.filter(
+    //   (product) => product.title === selectedProductTitle
+    // );
 
-    cartProducts2.length > 0
-      ? (foundIndex = cartProducts2.findIndex((product) => {
-          return product.id === selctedProduct[0].id
-            ? (isFound = true)
-            : (isFound = false);
-        }))
-      : (isFound = false);
+    // let isFound;
+    // let foundIndex;
 
-    isFound
-      ? (cartProducts2[foundIndex].no += 1)
-      : (cartProducts2 = [...cartProducts2, ...selctedProduct]);
+    // cartProducts2.length > 0
+    //   ? (foundIndex = cartProducts2.findIndex((product) => {
+    //       return product.id === selctedProduct[0].id
+    //         ? (isFound = true)
+    //         : (isFound = false);
+    //     }))
+    //   : (isFound = false);
 
-    setCartProducts(cartProducts2);
+    // isFound
+    //   ? (cartProducts2[foundIndex].no += 1)
+    //   : (cartProducts2 = [...cartProducts2, ...selctedProduct]);
 
-    toast(`Added ${selectedProductTitle} into the cart`);
+    // setCartProducts(cartProducts2);
+
+    // toast(`Added ${selectedProductTitle} into the cart`);
   };
 
   useEffect(() => {

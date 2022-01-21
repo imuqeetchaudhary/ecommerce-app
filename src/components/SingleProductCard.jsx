@@ -2,8 +2,6 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 
 const SingleProductCard = ({
-  productId,
-  cartId,
   img,
   title,
   detail,
@@ -27,7 +25,7 @@ const SingleProductCard = ({
               <Button
                 variant="outline-danger"
                 onClick={(e) =>
-                  handleDecrementCartProductQuantityChange(e, cartId)
+                  handleDecrementCartProductQuantityChange(e, children.id)
                 }
               >
                 -
@@ -36,7 +34,7 @@ const SingleProductCard = ({
               <Button
                 variant="outline-success"
                 onClick={(e) =>
-                  handleIncrementCartProductQuantityChange(e, cartId)
+                  handleIncrementCartProductQuantityChange(e, children.id)
                 }
               >
                 +
@@ -46,7 +44,7 @@ const SingleProductCard = ({
           <Button
             variant="primary"
             type="submit"
-            onClick={(e) => handleCartChange(e, productId, cartId)}
+            onClick={(e) => handleCartChange(e, children.id)}
           >
             {children.button}
           </Button>
