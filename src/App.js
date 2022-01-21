@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import AllProducts from "./components/AllProducts";
-import { getAllProducts, getCartItems } from "./api/api";
+import { getAllProducts, getCartItems, deleteCartItem } from "./api/api";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,18 +21,16 @@ function App() {
   const [isFetchedAllProducts, setIsFetchedAllProducts] = useState(false);
   const [isFetchedCartItems, setIsFetchedCartItems] = useState(false);
 
-  const handleDeleteCartChange = (cartId) => {
-    // e.preventDefault();
-    console.log("Deleted Cart Id", cartId);
-    console.log(cartProducts);
-    setCartProducts(cartProducts);
+  const handleDeleteCartChange = async (e, productId, cartId) => {
+    e.preventDefault();
 
-    // const selectedProductTitle = e.target.parentNode.firstChild.innerText;
-    // const selctedProduct = cartProducts.filter(
-    //   (product) => product.title !== selectedProductTitle
-    // );
-    // setCartProducts(selctedProduct);
-    // toast(`Removed ${selectedProductTitle} from the cart`);
+    try {
+      await deleteCartItem(cartId);
+      toast(`Removed from the cart`);
+      setTimeout(() => window.location.reload(), 1000);
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 
   const handleCartChange = (e, id) => {

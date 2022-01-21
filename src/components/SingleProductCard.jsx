@@ -46,7 +46,7 @@ const SingleProductCard = ({
           <Button
             variant="primary"
             type="submit"
-            onClick={(e) => handleCartChange(e, productId)}
+            onClick={(e) => handleCartChange(e, productId, cartId)}
           >
             {children.button}
           </Button>
