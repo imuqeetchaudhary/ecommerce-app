@@ -44,7 +44,7 @@ code {
 }
 
 .create-product {
-  margin-top: 72px;
+  margin-top: 78px;
 }
 
 .input {
@@ -94,6 +94,10 @@ form {
 
 .single-card {
   max-width: 25%;
+}
+
+.delete-btn {
+  margin-right: 10px;
 }
 
 .nav-links a {

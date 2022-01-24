@@ -41,3 +41,7 @@ export const addCartItem = (productId) => {
 export const createProduct = (data) => {
   return api.post("/product", data, config);
 };
+
+export const deleteProduct = (productId) => {
+  return api.delete(`/product/${productId}`, config);
+};

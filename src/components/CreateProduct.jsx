@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { createProduct } from "../api/api";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const CreateProduct = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -20,15 +23,15 @@ const CreateProduct = () => {
     formData.append("price", price);
 
     try {
-      const res = await createProduct(formData);
+      await createProduct(formData);
       setMsg({ success: "Successfully created new Product", error: "" });
-      console.log(res);
+      toast(`Successfully created ${title}`);
     } catch (err) {
       setMsg({
         success: "",
         error: "Something went wrong while creating new product",
       });
-      console.log(err);
+      throw new Error(err);
     }
   };
 
@@ -82,11 +85,7 @@ const CreateProduct = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
-        {msg.success ? (
-          <p className="success-msg">{msg.success}</p>
-        ) : (
-          <p className="error-msg">{msg.error}</p>
-        )}
+        {msg.error && <p className="error-msg">{msg.error}</p>}
       </form>
     </div>
   );

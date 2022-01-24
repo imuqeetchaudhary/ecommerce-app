@@ -9,6 +9,7 @@ const SingleProductCard = ({
   no,
   children,
   handleCartChange,
+  handleDeleteProduct,
   handleIncrementCartProductQuantityChange,
   handleDecrementCartProductQuantityChange,
 }) => {
@@ -40,6 +41,16 @@ const SingleProductCard = ({
                 +
               </Button>
             </Card.Text>
+          )}
+          {children.route === "/products" && (
+            <Button
+              className="delete-btn"
+              variant="primary"
+              type="submit"
+              onClick={(e) => handleDeleteProduct(e, children.id)}
+            >
+              Delete Product
+            </Button>
           )}
           <Button
             variant="primary"

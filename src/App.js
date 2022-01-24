@@ -15,6 +15,7 @@ import {
   getCartItems,
   deleteCartItem,
   updateCartItem,
+  deleteProduct,
 } from "./api/api";
 import { useNavigate } from "react-router-dom";
 
@@ -82,6 +83,25 @@ function App() {
     }
   };
 
+  const handleDeleteProduct = async (e, id) => {
+    e.preventDefault();
+
+    const foundIndex = products.findIndex((products) => products._id === id);
+
+    const newProducts = products.filter((products) => products._id !== id);
+
+    const productTitle = products[foundIndex].title;
+
+    try {
+      await deleteProduct(id);
+      setProducts(newProducts);
+      toast(`Successfully deleted ${productTitle}`);
+      navigate("/");
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -119,7 +139,11 @@ function App() {
         <Route
           path="/"
           element={
-            <Home products={products} handleCartChange={handleCartChange} />
+            <Home
+              products={products}
+              handleCartChange={handleCartChange}
+              handleDeleteProduct={handleDeleteProduct}
+            />
           }
         />
         <Route path="/register" element={<Register />} />
@@ -131,6 +155,7 @@ function App() {
             <AllProducts
               products={products}
               handleCartChange={handleCartChange}
+              handleDeleteProduct={handleDeleteProduct}
             />
           }
         />

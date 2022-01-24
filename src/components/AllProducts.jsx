@@ -3,7 +3,7 @@ import { CardGroup } from "react-bootstrap";
 import SingleProductCard from "./SingleProductCard";
 import Footer from "./Footer";
 
-const AllProducts = ({ handleCartChange, products }) => {
+const AllProducts = ({ handleCartChange, products, handleDeleteProduct }) => {
   return (
     <div>
       <CardGroup className="card-group">
@@ -16,7 +16,12 @@ const AllProducts = ({ handleCartChange, products }) => {
               detail={product.description}
               price={product.price}
               handleCartChange={handleCartChange}
-              children={{ button: "Add to Cart", id: product._id }}
+              handleDeleteProduct={handleDeleteProduct}
+              children={{
+                button: "Add to Cart",
+                id: product._id,
+                route: "/products",
+              }}
             />
           );
         })}
