@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { login } from "../api/api";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  const [successMsg, setSuccessMsg] = useState("");
 
   const navigate = useNavigate();
 
@@ -21,20 +23,16 @@ const Login = () => {
 
     try {
       const res = await login(userObj);
-      console.log(res);
-      res.status === 200 && setSuccessMsg("Successfully Logged In");
-      setErrorMsg("");
       localStorage.setItem("token", res.data.token);
+
+      toast(`Successfully Logged In`);
+      setErrorMsg("");
+      setTimeout(() => navigate("/"), 2000);
     } catch (err) {
-      console.log(err.response);
       setErrorMsg(err.response.data.message);
-      setSuccessMsg("");
+      throw new Error(err);
     }
   };
-
-  useEffect(() => {
-    successMsg && setTimeout(() => navigate("/"), 2000);
-  });
 
   return (
     <div className="login">
@@ -65,11 +63,7 @@ const Login = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
-        {successMsg ? (
-          <p className="success-msg">{successMsg}</p>
-        ) : (
-          <p className="error-msg">{errorMsg}</p>
-        )}
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
       </form>
     </div>
   );

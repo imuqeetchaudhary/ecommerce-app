@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { register, login } from "../api/api";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  const [successMsg, setSuccessMsg] = useState("");
 
   const navigate = useNavigate();
 
@@ -23,18 +25,18 @@ const Register = () => {
 
     try {
       const registerRes = await register(userObj);
-      setSuccessMsg(registerRes.data.message);
 
       const loginRes = await login(userObj);
       localStorage.setItem("token", loginRes.data.token);
+
+      toast(`${registerRes.data.message}`);
+      setErrorMsg("");
+
+      setTimeout(() => navigate("/"), 2000);
     } catch (err) {
       setErrorMsg(err.response.data.message);
     }
   };
-
-  useEffect(() => {
-    successMsg && setTimeout(() => navigate("/"), 2000);
-  });
 
   return (
     <div className="register">
@@ -77,11 +79,7 @@ const Register = () => {
           Submit
         </Button>
       </form>
-      {successMsg ? (
-        <p className="success-msg">{successMsg}</p>
-      ) : (
-        <p className="error-msg">{errorMsg}</p>
-      )}
+      {errorMsg && <p className="error-msg">{errorMsg}</p>}
     </div>
   );
 };
