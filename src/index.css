@@ -31,7 +31,8 @@ code {
 }
 
 .register,
-.login {
+.login,
+.create-product {
   margin-top: 110px;
   max-width: 50%;
   background-color: #212529;
@@ -42,8 +43,20 @@ code {
   margin-right: auto;
 }
 
+.create-product {
+  margin-top: 72px;
+}
+
 .input {
-  width: 70%;
+  width: 75%;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin: 5px 40px;
+}
+
+.input-image {
+  width: 25%;
   border-radius: 5px;
   outline: none;
   border: none;
