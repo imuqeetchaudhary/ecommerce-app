@@ -14,6 +14,7 @@ const NavbarComp = () => {
             <Link to="/">Home</Link>
             <Link to="/products">Products</Link>
             <Link to="/products/create">Create Product</Link>
+            <Link to="/products/update">Update Product</Link>
             <Link to="/cart">Cart</Link>
           </Nav>
         </Container>

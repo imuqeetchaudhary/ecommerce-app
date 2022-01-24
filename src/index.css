@@ -47,12 +47,17 @@ code {
   margin-top: 78px;
 }
 
-.input {
+.input,
+.select {
   width: 75%;
   border-radius: 5px;
   outline: none;
   border: none;
   margin: 5px 40px;
+}
+
+.select {
+  width: 53%;
 }
 
 .input-image {
@@ -63,7 +68,8 @@ code {
   margin: 5px 40px;
 }
 
-.input:focus {
+.input:focus,
+.select:focus {
   border: 2px solid #71d300;
 }
 
