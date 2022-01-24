@@ -42,23 +42,29 @@ const SingleProductCard = ({
               </Button>
             </Card.Text>
           )}
-          {children.route === "/products" && (
-            <Button
-              className="delete-btn"
-              variant="primary"
-              type="submit"
-              onClick={(e) => handleDeleteProduct(e, children.id)}
-            >
-              Delete Product
-            </Button>
+          {localStorage.getItem("token") ? (
+            <>
+              {children.route === "/products" && (
+                <Button
+                  className="delete-btn"
+                  variant="primary"
+                  type="submit"
+                  onClick={(e) => handleDeleteProduct(e, children.id)}
+                >
+                  Delete Product
+                </Button>
+              )}
+              <Button
+                variant="primary"
+                type="submit"
+                onClick={(e) => handleCartChange(e, children.id)}
+              >
+                {children.button}
+              </Button>
+            </>
+          ) : (
+            <Button variant="primary">Login first to add items to cart</Button>
           )}
-          <Button
-            variant="primary"
-            type="submit"
-            onClick={(e) => handleCartChange(e, children.id)}
-          >
-            {children.button}
-          </Button>
         </Card.Body>
       </Card>
     </div>
