@@ -32,7 +32,7 @@ const Register = () => {
       toast(`${registerRes.data.message}`);
       setErrorMsg("");
 
-      setTimeout(() => navigate("/"), 2000);
+      setTimeout(() => navigate("/"), 500);
     } catch (err) {
       setErrorMsg(err.response.data.message);
     }

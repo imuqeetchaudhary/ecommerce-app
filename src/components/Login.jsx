@@ -27,7 +27,7 @@ const Login = () => {
 
       toast(`Successfully Logged In`);
       setErrorMsg("");
-      setTimeout(() => navigate("/"), 2000);
+      setTimeout(() => navigate("/"), 500);
     } catch (err) {
       setErrorMsg(err.response.data.message);
       throw new Error(err);

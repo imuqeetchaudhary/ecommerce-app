@@ -23,6 +23,12 @@ const NavbarComp = ({ isLoggedIn }) => {
                 <Link to="/products/create">Create Product</Link>
                 <Link to="/products/update">Update Product</Link>
                 <Link to="/cart">Cart</Link>
+                <Link
+                  to="/login"
+                  onClick={() => localStorage.removeItem("token")}
+                >
+                  Logout
+                </Link>{" "}
               </>
             )}
           </Nav>
