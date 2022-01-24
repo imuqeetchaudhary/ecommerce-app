@@ -149,7 +149,12 @@ function App() {
         />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/products/create" element={<CreateProduct />} />
+        <Route
+          path="/products/create"
+          element={
+            <CreateProduct products={products} setProducts={setProducts} />
+          }
+        />
         <Route
           path="/products/update"
           element={

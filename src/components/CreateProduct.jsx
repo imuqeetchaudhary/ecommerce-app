@@ -5,7 +5,7 @@ import { createProduct } from "../api/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const CreateProduct = () => {
+const CreateProduct = ({ products, setProducts }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -23,9 +23,10 @@ const CreateProduct = () => {
     formData.append("price", price);
 
     try {
-      await createProduct(formData);
+      const res = await createProduct(formData);
       setMsg({ success: "Successfully created new Product", error: "" });
       toast(`Successfully created ${title}`);
+      setProducts([...products, res.data.product]);
     } catch (err) {
       setMsg({
         success: "",
