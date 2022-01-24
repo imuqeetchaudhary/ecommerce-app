@@ -25,7 +25,10 @@ const NavbarComp = ({ isLoggedIn }) => {
                 <Link to="/cart">Cart</Link>
                 <Link
                   to="/login"
-                  onClick={() => localStorage.removeItem("token")}
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    window.location.href = "http://localhost:3000/login";
+                  }}
                 >
                   Logout
                 </Link>{" "}

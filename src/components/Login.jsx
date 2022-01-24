@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { login } from "../api/api";
 
@@ -10,8 +9,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +24,7 @@ const Login = () => {
 
       toast(`Successfully Logged In`);
       setErrorMsg("");
-      setTimeout(() => navigate("/"), 500);
+      setTimeout(() => (window.location.href = "http://localhost:3000/"), 500);
     } catch (err) {
       setErrorMsg(err.response.data.message);
       throw new Error(err);
