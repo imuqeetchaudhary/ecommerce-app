@@ -4,8 +4,11 @@ import { login } from "../api/api";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -24,7 +27,8 @@ const Login = () => {
 
       toast(`Successfully Logged In`);
       setErrorMsg("");
-      setTimeout(() => (window.location.href = "http://localhost:3000/"), 500);
+      setTimeout(() => navigate("/"), 500);
+      // setTimeout(() => (window.location.href = "http://localhost:3000/"), 500);
     } catch (err) {
       setErrorMsg(err.response.data.message);
       throw new Error(err);

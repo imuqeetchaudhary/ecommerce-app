@@ -4,11 +4,25 @@ const api = axios.create({
   baseURL: "http://localhost:8000/",
 });
 
-const config = {
-  headers: {
-    Authorization: localStorage.getItem("token"),
+const config = api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers["authorization"] = token;
+    }
+
+    return config;
   },
-};
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// const config = {
+//   headers: {
+//     Authorization: localStorage.getItem("token"),
+//   },
+// };
 
 export const register = (data) => {
   return api.post("/user/register", { ...data });
