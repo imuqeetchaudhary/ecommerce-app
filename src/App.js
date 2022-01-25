@@ -118,7 +118,7 @@ function App() {
       }
     };
 
-    if (hookConfig) {
+    if (localStorage.getItem("token")) {
       const fetchCartItems = async () => {
         try {
           if (!isFetchedCartItems) {
