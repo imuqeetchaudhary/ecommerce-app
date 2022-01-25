@@ -118,21 +118,23 @@ function App() {
       }
     };
 
-    const fetchCartItems = async () => {
-      try {
-        if (!isFetchedCartItems) {
-          const res = await getCartItems();
-          setCartProducts(res.data.cart);
-          setIsFetchedCartItems(true);
+    if (hookConfig) {
+      const fetchCartItems = async () => {
+        try {
+          if (!isFetchedCartItems) {
+            const res = await getCartItems();
+            setCartProducts(res.data.cart);
+            setIsFetchedCartItems(true);
+          }
+        } catch (err) {
+          throw new Error(err);
         }
-      } catch (err) {
-        throw new Error(err);
-      }
-    };
+      };
+      fetchCartItems();
+    }
 
     fetchProducts();
-    fetchCartItems();
-  }, [isFetchedAllProducts, isFetchedCartItems]);
+  }, [isFetchedAllProducts, isFetchedCartItems, hookConfig]);
 
   return (
     <div className="App">
