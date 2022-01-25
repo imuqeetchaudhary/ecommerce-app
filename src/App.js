@@ -22,9 +22,11 @@ import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useConfig from "./hooks/useConfig";
 
 function App() {
   const navigate = useNavigate();
+  const hookConfig = useConfig();
 
   const [products, setProducts] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
@@ -55,7 +57,7 @@ function App() {
 
     if (foundIndex < 0) {
       try {
-        await addCartItem(id);
+        await addCartItem(id, hookConfig);
         toast(`Added product into the cart`);
 
         const cartRes = await getCartItems();

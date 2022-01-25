@@ -48,8 +48,8 @@ export const deleteCartItem = (cartId) => {
   return api.delete(`/cart/${cartId}`, config);
 };
 
-export const addCartItem = (productId) => {
-  return api.post(`/cart/${productId}`, {}, config);
+export const addCartItem = (productId, hookConfig) => {
+  return api.post(`/cart/${productId}`, {}, hookConfig);
 };
 
 export const createProduct = (data) => {
